@@ -1,0 +1,40 @@
+{
+    "chrome": {
+      "default": "72.0",
+      "verbose": "true",
+      "versions": {
+        "91.0": {
+          "image": "selenoid/chrome:91.0",
+          "limits": {
+            "memory": "1024",
+            "cpu": "1",
+            "limit": "10"
+          },
+          "path": "/",
+          "port": "4444"
+        },
+        "108.0": {
+          "image": "selenoid/chrome:108.0",
+          "limits": {
+            "memory": "2048",
+            "cpu": "2",
+            "limit": "20"
+          },
+          "path": "/",
+          "port": "4444",
+          "verbose": "true"
+        }
+      }
+    },
+    "firefox": {
+      "default": "66.0",
+      "versions": {
+        "65.0": {
+          "image": "selenoid/firefox:65.0"
+        },
+        "66.0": {
+          "image": "selenoid/firefox:66.0"
+        }
+      }
+    }
+  }
