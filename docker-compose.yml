@@ -22,7 +22,8 @@ services:
       - /etc/localtime:/etc/localtime:ro
       - /var/selenoid:/var/selenoid
       - /etc/selenoid:/etc/selenoid
-      - C:\Users\enonog\pace_development\test-env\selenoid_browsers.json:/etc/selenoid/browsers.json
+      # WINDOWS SETTING
+      # - C:\Users\enonog\pace_development\test-env\selenoid_browsers.json:/etc/selenoid/browsers.json
      # - ./logs:/opt/selenoid/logs
     command: ["-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-limit", "50", "-timeout", "10m", "-mem", "2g", "-cpu", "1.5"]
     ports:
@@ -36,14 +37,14 @@ services:
       - selenoid
     environment:
       - API_URL=http://selenoid:4444
-      - SELENOID_UI_PORT=8081
+      - SELENOID_UI_PORT=8080
       #- SELENIUM_HUB_PORT_4444_TCP_ADDR=selenoid
       #- SELENIUM_HUB_PORT_4444_TCP_PORT=4444
       #- SELENOID_UI_CONFIG_DIR=/etc/selenoid
     volumes:
           - /etc/localtime:/etc/localtime:ro
     ports:
-      - 8081:8080
+      - 8080:8080
     networks:
       - auto_net
     command: ["--selenoid-uri","http://selenoid:4444"]
@@ -52,7 +53,7 @@ services:
     image: jenkins/jenkins:lts
     container_name: jenkins
     ports:
-      - "8080:8080"
+      - "8081:8080"
       - "50000:50000"
     volumes:
       - jenkins_data:/var/jenkins_home

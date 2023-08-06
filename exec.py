@@ -19,7 +19,7 @@ def run_robot_tests(test_file, browser_name, browser_version):
 
 if __name__ == "__main__":
     # Specify the path to your Robot Framework test file here.
-    robot_test_file = "test/web/init.robot"
+    robot_test_file = "test/web/int.robot"
     
     if not os.path.isfile(robot_test_file):
         print(f"Error: Test file '{robot_test_file}' not found.")

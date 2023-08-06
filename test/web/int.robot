@@ -14,7 +14,7 @@ Library           SeleniumLibrary
 # *** Variables ***
 ${BROWSER}        chrome
 ${URL}            https://www.example.com
-${SELENOID_URL}   http://localhost:8081/wd/hub
+${SELENOID_URL}   http://localhost:8080/wd/hub
 
 *** Test Cases ***
 Open Browser and Verify Title
