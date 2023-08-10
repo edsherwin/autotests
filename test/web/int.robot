@@ -1,23 +1,13 @@
 *** Settings ***
 Library           SeleniumLibrary
+# Test Setup        Browser
 
 *** Variables ***
-# ${BROWSER}        chrome
-# ${URL}            https://www.example.com
-
-# *** Test Cases ***
-# Open Browser and Verify Title
-#     Open Browser    ${URL}    ${BROWSER}
-#     Title Should Be    Example Domain
-#     Close Browser
-
-# *** Variables ***
 ${BROWSER}        chrome
-${URL}            https://www.example.com
-${SELENOID_URL}   http://localhost:8080/wd/hub
+${URL}            https://www.google.com
 
 *** Test Cases ***
 Open Browser and Verify Title
-    Open Browser    ${URL}    ${BROWSER}    remote_url=${SELENOID_URL}
-    Title Should Be    Example Domain
+    Open Browser    ${URL}    ${BROWSER}
+    Title Should Be    Google
     Close Browser
