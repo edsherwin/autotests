@@ -1,5 +1,5 @@
 *** Settings ***
-Library           SeleniumLibrary
+Library    SeleniumLibrary
 
 *** Variables ***
 ${BROWSER}        chrome
@@ -14,6 +14,10 @@ Open Google and Search Robot Framework
     Capture Page Screenshot
     Close Browser
 
+Example Test
+    Open Browser    https://google.com    chrome
+    Close Browser
+
 *** Keywords ***
 Open Browser Testing
     [Arguments]     ${url}      ${browser}
@@ -21,3 +25,4 @@ Open Browser Testing
 
 Capture Page Screenshot
     Capture Page Screenshot
+
