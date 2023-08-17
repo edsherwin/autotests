@@ -1,0 +1,44 @@
+version: '3.7'
+services:
+  selenoid:
+    image: aerokube/selenoid:latest-release
+    network_mode: host
+    environment:
+      - OVERRIDE_VIDEO_OUTPUT_DIR=/var/selenoid/video
+      - OVERRIDE_VNC_PASSWORD=secret
+      - OVERRIDE_SELENIUM_HUB_PORT=4444
+      - OVERRIDE_SELENIUM_NODE_PORT=5555
+      - OVERRIDE_SELENOID_PORT=4444
+      - OVERRIDE_SELENOID_VERSION=3.141.59
+      - MAX_INSTANCES=10
+      - MAX_SESSIONS=10
+      #- SELENOID_OPTS=-logLevel=verbose
+      - SELENOID_CONFIGURATION_PATH=/etc/selenoid/browsers.json
+      #- SELENOID_LIMITS=20
+      #- VERBOSE=true
+      - SELENOID_LOG=wd
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /etc/localtime:/etc/localtime:ro
+      - /var/selenoid:/var/selenoid
+      - /etc/selenoid:/etc/selenoid
+     # - ./logs:/opt/selenoid/logs
+    command: ["-video-output-dir", "/opt/selenoid/video", "-log-output-dir", "/opt/selenoid/logs", "-limit", "50", "-timeout", "10m", "-mem", "2g", "-cpu", "1.5"]
+    ports:
+      - "4444:4444"
+  selenoid-ui:
+    image: aerokube/selenoid-ui:latest-release
+    network_mode: host
+    depends_on:
+      - selenoid
+    environment:
+      - API_URL=http://selenoid:4444
+      - SELENOID_UI_PORT=8080
+      #- SELENIUM_HUB_PORT_4444_TCP_ADDR=selenoid
+      #- SELENIUM_HUB_PORT_4444_TCP_PORT=4444
+      #- SELENOID_UI_CONFIG_DIR=/etc/selenoid
+    volumes:
+          - /etc/localtime:/etc/localtime:ro
+    ports:
+      - 8080:8080
+    #command: ["--selenoid-uri","http://selenoid:4444"]
