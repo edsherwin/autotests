@@ -27,9 +27,9 @@ services:
     ports:
       - "4444:4444"
   selenoid-ui:
-    image: aerokube/selenoid-ui:latest-release
+    image: aerokube/selenoid-ui:latest
     network_mode: host
-    depends_on:
+    links:
       - selenoid
     environment:
       - API_URL=http://selenoid:4444
